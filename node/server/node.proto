@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package node;
+
+option go_package = "imago-node/server;server";
+
+service NodeService {
+  rpc StoreSegment(StoreSegmentRequest) returns (StoreSegmentResponse);
+  rpc RetrieveSegment(RetrieveSegmentRequest) returns (RetrieveSegmentResponse);
+}
+
+message StoreSegmentRequest {
+  bytes nanoseed = 1;
+  bytes segment_data = 2;
+}
+
+message StoreSegmentResponse {
+  string message = 1;
+}
+
+message RetrieveSegmentRequest {
+  bytes nanoseed = 1;
+}
+
+message RetrieveSegmentResponse {
+  bytes segment_data = 1;
+}

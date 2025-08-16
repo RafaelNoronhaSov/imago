@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package root;
+
+option go_package = "./;root";
+
+service RootService {
+  rpc CreateImageChunks(CreateImageChunksRequest) returns (ImageChunks);
+}
+
+message CreateImageChunksRequest {
+  string image_identifier = 1;
+  bytes image_data = 2;
+}
+
+message ImageChunks {
+  repeated Chunk chunks = 1;
+  repeated bytes parity_shards = 2;
+}
+
+message Chunk {
+  bytes nanoseed = 1;
+  bytes segment_data = 2;
+}
